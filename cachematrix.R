@@ -2,19 +2,19 @@
 ## functions do
 
 ## Write a short comment describing this function
-
+## solves for the matrix via passing values via nested functions and saves it to the global environment for future use
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
+  invert <- NULL
   set <- function(y) {
     x <<- y
-    m <<- NULL
+    invert <<- NULL
   }
   get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
+  setinverse <- function(solve) invert <<- solve
+  getinverse <- function() invert
   list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
+       setinverse = setinverse,
+       getinverse = getinverse)
 }
 
 
@@ -22,13 +22,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  m <- x$getmean()
-  if(!is.null(m)) {
+  invert <- x$getinverse()
+  if(!is.null(invert)) {
     message("getting cached data")
-    return(m)
+    return(invert)
   }
   data <- x$get()
-  m <- mean(data, ...)
-  x$setmean(m)
-  m
+  m <- solve(data, ...)
+  x$setinverse(invert)
+  invert
 }
