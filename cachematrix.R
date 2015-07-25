@@ -5,12 +5,12 @@
 ## solves for the matrix via passing values via nested functions and saves it to the global environment for future use
 makeCacheMatrix <- function(x = matrix()) { # declares this a function expecting a matrix as a parameter
   invert <- NULL # creates empty variable named invert
-  set <- function(y) { # creates function named set expects parameter of y
+  set <- function(y) { # creates function named set that expects parameter of y
     x <<- y # assigns x to value y in global environment
     invert <<- NULL #creates empty variable named invert in global environment
   }
-  get <- function() x # assigns get to retrieve x
-  setinverse <- function(solve) invert <<- solve # assigns set inverse function to take solve as a parameter and assign it globally to invert 
+  get <- function() x # assigns get as a fucntion that will retrieve x
+  setinverse <- function(solve) invert <<- solve # assigns set inverse function to take the solve function as an assigned global variable 
   getinverse <- function() invert # assigns getinverse to retrieve invert 
   list(set = set, get = get, #sets expected list parameters 
        setinverse = setinverse,
@@ -21,8 +21,8 @@ makeCacheMatrix <- function(x = matrix()) { # declares this a function expecting
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) { # creates funciton, expects x and inherited parameters
-        ## Return a matrix that is the inverse of 'x'
-  invert <- x$getinverse() # assigns invert to named function of x  called getinverse 
+  ## Return a matrix that is the inverse of 'x'
+  invert <- x$getinverse() # assigns invert to named function of x called getinverse 
   if(!is.null(invert)) { #tests to see if invert is not null 
     message("getting cached data") #message
     return(invert) #returns cached invert
