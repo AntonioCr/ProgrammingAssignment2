@@ -12,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) { # declares this a function expecting
   get <- function() x # assigns get to retrieve x
   setinverse <- function(solve) invert <<- solve # assigns set inverse function to take solve as a parameter and assign it globally to invert 
   getinverse <- function() invert # assigns getinverse to retrieve invert 
-  list(set = set, get = get, #sets expected list variables 
+  list(set = set, get = get, #sets expected list parameters 
        setinverse = setinverse,
        getinverse = getinverse)
 }
